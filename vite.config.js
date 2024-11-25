@@ -4,9 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   esbuild: {
-    loader: {
-      '.js':'.jsx',
-    }
+    loader: 'jsx',
   },
   plugins: [react()],
 })
