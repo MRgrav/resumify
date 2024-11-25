@@ -6,7 +6,7 @@ import ResumeBuilder from './components/ResumeBuilder';
 function App() {
   return (
     <Router>
-      <div className="bg-black bg-opacity-50 min-h-screen">
+      <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/build" element={<ResumeBuilder />} />

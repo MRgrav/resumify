@@ -14,22 +14,26 @@ const jobTypes = [
   { value: 'photographer', label: 'Photographer', icon: FaCamera, color: '#FF4500' },
 ];
 
-const JobSelector = () => {
+const JobSelector = ({theme}) => {
   const [selectedJob, setSelectedJob] = useState('');
+  const textColor = theme === 'dark' ? 'text-white' : 'text-black';
+  const selectorBG = theme === 'dark' ? 'bg-zinc-900' : 'bg-white' ;
+  const selectedBG = theme === 'dark' ? 'bg-zinc-950' : 'bg-violet-100' ;
+  const textColor2 = theme === 'dark' ? 'text-zinc-500' : 'text-zinc-700' ;
 
   return (
-    <div className=" py-12 px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row">
+    <div className=" py-12 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row">
       <div className="max-w-md min-w-md mx-auto">
-        <h1 className="text-3xl font-extrabold text-white text-center mb-8">
+        <h1 className={`text-3xl font-extrabold text-center mb-8 ${textColor}`}>
           Choose Your Job Type
         </h1>
-        <div className="bg-zinc-900 shadow-md rounded-lg overflow-hidden">
-          <div className="max-h-96 overflow-y-auto"> {/* Added max-height and overflow for scroll */}
+        <div className={`${selectorBG} shadow-md rounded-lg overflow-hidden`}>
+          <div className="max-h-[52vh] overflow-y-auto"> {/* Added max-height and overflow for scroll */}
             {jobTypes.map((job) => (
               <label
                 key={job.value}
                 className={`flex items-center p-4 cursor-pointer transition-colors duration-200 ease-in-out ${
-                  selectedJob === job.value ? 'bg-zinc-950 text-bold text-lg' : 'hover:bg-zinc-950 hover:text-lg'
+                  selectedJob === job.value ? `${selectedBG} text-bold text-lg` : `hover:${selectedBG} hover:text-lg`
                 }`}
               >
                 <input
@@ -43,8 +47,8 @@ const JobSelector = () => {
                 <div className={`transition-transform duration-200 ${selectedJob === job.value ? 'scale-105' : 'scale-75'}`}>
                   <job.icon className="h-8 w-8 mr-3" style={{ color: job.color }} />
                 </div>
-                <span className={`text-zinc-500 transition-all duration-200 ${
-                  selectedJob === job.value ? 'font-bold ps-2' : 'font-normal hover:font-bold'
+                <span className={`${textColor2} transition-all duration-200 ${
+                  selectedJob === job.value ? 'font-semibold ps-2' : 'font-normal hover:font-semibold'
                 }`}>
                   {job.label}
                 </span>
@@ -68,7 +72,7 @@ const JobSelector = () => {
           </div>
         </div>
         {selectedJob && (
-          <p className="mt-4 text-center text-gray-600">
+          <p className={`mt-4 text-center ${textColor2}`}>
             You selected: <span className="font-semibold">{jobTypes.find(job => job.value === selectedJob).label}</span>
           </p>
         )}
